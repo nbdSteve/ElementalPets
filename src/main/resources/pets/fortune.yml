@@ -1,0 +1,28 @@
+pet-id: 4aabe91b-261b-491c-8d01-5551561ce201
+
+item:
+  name: '{rarity} &f&lFORTUNE PET'
+  material: skull_item
+  data: 3
+  owner: f2d252de-e5ac-4fc8-bcdb-274be6a41fbb
+  lore:
+    - ''
+    - '&7Fortune Pet will increase drops from blocks.'
+    - ''
+    - '&7Rarity: {rarity}'
+
+rarity:
+  common: '&7&lCOMMON'
+  uncommon: '&a&lUNCOMMON'
+  rare: '&b&lRARE'
+  epic: '&d&lEPIC'
+  legendary: '&6&lLEGENDARY'
+
+data:
+  1:
+    type: fortune
+    common: 1.05
+    uncommon: 1.10
+    rare: 1.15
+    epic: 1.20
+    legendary: 1.25

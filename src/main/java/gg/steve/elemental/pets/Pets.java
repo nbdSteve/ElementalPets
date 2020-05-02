@@ -2,6 +2,7 @@ package gg.steve.elemental.pets;
 
 import gg.steve.elemental.pets.config.FileManager;
 import gg.steve.elemental.pets.config.SetupManager;
+import gg.steve.elemental.pets.core.PetManager;
 import gg.steve.elemental.pets.utils.LogUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,6 +17,7 @@ public final class Pets extends JavaPlugin {
         SetupManager.setupFiles(new FileManager(instance));
         SetupManager.registerCommands(instance);
         SetupManager.registerEvents(instance);
+        PetManager.loadPets();
     }
 
     @Override

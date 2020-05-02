@@ -4,3 +4,7 @@ main: gg.steve.elemental.pets.Pets
 api-version: 1.13
 authors: [stevegoodhill]
 description: Pets plugin developed for ElementalMC.
+commands:
+  pet:
+    usage: /<command>
+    description: Base commands for elemental pets.

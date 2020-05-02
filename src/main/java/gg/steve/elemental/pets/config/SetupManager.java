@@ -1,5 +1,8 @@
 package gg.steve.elemental.pets.config;
 
+import gg.steve.elemental.pets.Pets;
+import gg.steve.elemental.pets.cmd.PetCmd;
+import gg.steve.elemental.pets.listener.AddPetListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -24,7 +27,8 @@ public class SetupManager {
         }
     }
 
-    public static void registerCommands(Plugin instance) {
+    public static void registerCommands(Pets instance) {
+        instance.getCommand("pet").setExecutor(new PetCmd());
 //        PaperCommandManager manager = new PaperCommandManager(instance);
 //        manager.registerCommand(new CaneCmd());
     }
@@ -36,5 +40,6 @@ public class SetupManager {
      */
     public static void registerEvents(Plugin instance) {
         PluginManager pm = instance.getServer().getPluginManager();
+        pm.registerEvents(new AddPetListener(), instance);
     }
 }

@@ -51,6 +51,7 @@ public class ItemBuilderUtil {
     }
 
     public void addLore(List<String> lore, String... replacement) {
+        this.lore.clear();
         List<String> replacements = Arrays.asList(replacement);
         for (String line : lore) {
             for (int i = 0; i < this.placeholders.size(); i++) {
@@ -84,6 +85,7 @@ public class ItemBuilderUtil {
     public void addNBT(Pet pet) {
         nbtItem = new NBTItem(item);
         nbtItem.setString("pets.id", String.valueOf(pet.getId()));
+        nbtItem.setString("pets.item.id", String.valueOf(UUID.randomUUID()));
     }
 
     public void setItemMeta(ItemMeta itemMeta) {

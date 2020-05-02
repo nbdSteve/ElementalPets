@@ -59,3 +59,7 @@ t
 Dsrc/main/java/gg/steve/elemental/pets/data/types/FortunePetData.java,0\b\0b8f1b7184df41a8f722286ab224eb6db07d2a7d
 r
 Bsrc/main/java/gg/steve/elemental/pets/data/types/MoneyPetData.java,1\3\133d68340be3f42ed928d33227a2bc2ab69c25ba
+e
+5src/main/java/gg/steve/elemental/pets/cmd/PetCmd.java,3\9\39f87be428ca48261d4ba6d17556e78a4934b48e
+r
+Bsrc/main/java/gg/steve/elemental/pets/listener/AddPetListener.java,2\a\2aad475d358f8f5a1f76f471f9d009f55fa4b25b

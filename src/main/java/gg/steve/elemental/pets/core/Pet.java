@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class Pet {
@@ -31,22 +32,22 @@ public class Pet {
         this.data = PetDataManager.loadPetData(this);
         // load some of the item builder so that is doesn't constantly get created in givePet
         ConfigurationSection item = this.config.getConfigurationSection("item");
-        ItemBuilderUtil builder = new ItemBuilderUtil(item.getString("material"), item.getString("data"));
+        itemBuilder = new ItemBuilderUtil(item.getString("material"), item.getString("data"));
         if (item.getString("owner") != null) {
-            SkullMeta meta = (SkullMeta) builder.getItemMeta();
+            SkullMeta meta = (SkullMeta) itemBuilder.getItemMeta();
             meta.setOwner(Bukkit.getOfflinePlayer(UUID.fromString(item.getString("owner"))).getName());
-            builder.setItemMeta(meta);
+            itemBuilder.setItemMeta(meta);
         }
-        builder.setLorePlaceholders("{rarity}");
-        builder.addEnchantments(item.getStringList("enchantments"));
-        builder.addItemFlags(item.getStringList("item-flags"));
-        itemBuilder.addNBT(this);
+        itemBuilder.setLorePlaceholders("{rarity}");
+        itemBuilder.addEnchantments(item.getStringList("enchantments"));
+        itemBuilder.addItemFlags(item.getStringList("item-flags"));
     }
 
     public void givePet(Player player, PetRarity rarity) {
         ConfigurationSection item = this.config.getConfigurationSection("item");
         itemBuilder.addName(item.getString("name"), "{rarity}", this.rarityPrefixes.get(rarity));
         itemBuilder.addLore(item.getStringList("lore"), this.rarityPrefixes.get(rarity));
+        itemBuilder.addNBT(this);
         player.getInventory().addItem(itemBuilder.getItem());
     }
 
@@ -64,5 +65,28 @@ public class Pet {
 
     public YamlConfiguration getConfig() {
         return config;
+    }
+
+    public UUID getPetId() {
+        return petId;
+    }
+
+    public ItemBuilderUtil getItemBuilder() {
+        return itemBuilder;
+    }
+
+    public Map<PetDataType, PetData> getData() {
+        return data;
+    }
+
+    public Map<PetRarity, String> getRarityPrefixes() {
+        return rarityPrefixes;
+    }
+
+    public boolean isType(Set<PetDataType> types) {
+        for (PetDataType type : this.data.keySet()) {
+            if (types.contains(type)) return true;
+        }
+        return false;
     }
 }

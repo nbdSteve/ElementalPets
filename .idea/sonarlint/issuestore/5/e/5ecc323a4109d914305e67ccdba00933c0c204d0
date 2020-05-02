@@ -1,3 +1,14 @@
 
+^
+java:S1128"ARemove this unused import 'gg.steve.elemental.pets.data.PetData'.(ƒ™öñ8¥—¥¬.
 \
-java:S1118":Add a private constructor to hide the implicit public one.(Ÿê¢™ùÿÿÿÿ8½·œ§.
+java:S1118":Add a private constructor to hide the implicit public one.(Ÿê¢™ùÿÿÿÿ8½·œ§.
+e
+java:S11923"HDefine a constant instead of duplicating this literal "pets.id" 6 times.(©õ8ªºè¬.
+u	java:S1350"YReduce the total number of break and continue statements in this loop to use at most one.(ÓùØ8ªºè¬.
+u	java:S135<"YReduce the total number of break and continue statements in this loop to use at most one.(ÓùØ8ªºè¬.
+u	java:S135F"YReduce the total number of break and continue statements in this loop to use at most one.(ÓùØ8ªºè¬.
+c
+java:S2259K"AA "NullPointerException" could be thrown; "pet" is nullable here.(Ìäóçÿÿÿÿÿ8ªºè¬.
+^
+java:S22595"AA "NullPointerException" could be thrown; "pet" is nullable here.(€àš´8ªºè¬.

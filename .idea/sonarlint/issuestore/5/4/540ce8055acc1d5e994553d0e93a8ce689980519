@@ -1,7 +1,3 @@
 
 \
-java:S1118":Add a private constructor to hide the implicit public one.(Ğñ‚²ûÿÿÿÿ8ĞÕé¦.
-J
-java:S1172"-Remove this unused method parameter "player".(à•ˆ8ĞÕé¦.
-T
-java:S2589"7Remove this expression which always evaluates to "true"(ó„ıæ8•ë¦.
+java:S1118":Add a private constructor to hide the implicit public one.(Ğñ‚²ûÿÿÿÿ8ĞÕé¦.
