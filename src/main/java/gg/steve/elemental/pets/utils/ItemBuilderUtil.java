@@ -2,6 +2,7 @@ package gg.steve.elemental.pets.utils;
 
 import gg.steve.elemental.pets.core.Pet;
 import gg.steve.elemental.pets.nbt.NBTItem;
+import gg.steve.elemental.pets.rarity.PetRarity;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -82,9 +83,10 @@ public class ItemBuilderUtil {
         item.setItemMeta(itemMeta);
     }
 
-    public void addNBT(Pet pet) {
+    public void addNBT(Pet pet, PetRarity rarity) {
         nbtItem = new NBTItem(item);
         nbtItem.setString("pets.id", String.valueOf(pet.getId()));
+        nbtItem.setString("pets.rarity", rarity.name());
         nbtItem.setString("pets.item.id", String.valueOf(UUID.randomUUID()));
     }
 

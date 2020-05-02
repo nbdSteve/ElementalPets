@@ -4,7 +4,7 @@ item:
   name: '{rarity} &f&lMONEY PET'
   material: skull_item
   data: 3
-  owner: f2d252de-e5ac-4fc8-bcdb-274be6a41fbb
+  owner: a91b96a0-dc18-427f-b76d-f7848bec6bd2
   lore:
     - ''
     - '&7Money Pet will increase sell price for items.'
@@ -19,10 +19,9 @@ rarity:
   legendary: '&6&lLEGENDARY'
 
 data:
-  1:
-    type: money
-    common: 1.05
-    uncommon: 1.10
-    rare: 1.15
-    epic: 1.20
-    legendary: 1.25
+  type: money
+  common: 1.05
+  uncommon: 1.10
+  rare: 1.15
+  epic: 1.20
+  legendary: 1.25

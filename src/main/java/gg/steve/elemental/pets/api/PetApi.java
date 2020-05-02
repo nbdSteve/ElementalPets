@@ -2,27 +2,27 @@ package gg.steve.elemental.pets.api;
 
 import gg.steve.elemental.pets.Pets;
 import gg.steve.elemental.pets.core.Pet;
-import gg.steve.elemental.pets.core.PetManager;
-import gg.steve.elemental.pets.data.PetDataType;
+import gg.steve.elemental.pets.core.PetType;
+import gg.steve.elemental.pets.core.PlayerPetManager;
 import org.bukkit.entity.Player;
 
-import java.util.List;
+import java.util.Map;
 
 public class PetApi {
 
-    public static Pets getInstace() {
+    public static Pets getInstance() {
         return Pets.get();
     }
 
-    public static boolean isPetActive(Player player, PetDataType type) {
-        return PetManager.isPetActive(player, type);
+    public static boolean isPetActive(Player player, PetType type) {
+        return PlayerPetManager.isPetActive(player.getUniqueId(), type);
     }
 
-    public static Pet getActivePet(Player player, PetDataType type) {
-        return PetManager.getActivePet(player, type);
+    public static Pet getActivePet(Player player, PetType type) {
+        return PlayerPetManager.getActivePet(player.getUniqueId(), type);
     }
 
-    public static List<Pet> getActivePets(Player player) {
-        return PetManager.getActivePets(player);
+    public static Map<PetType, Pet> getActivePets(Player player) {
+        return PlayerPetManager.getActivePets(player.getUniqueId());
     }
 }

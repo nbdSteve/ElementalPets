@@ -2,7 +2,8 @@ package gg.steve.elemental.pets.config;
 
 import gg.steve.elemental.pets.Pets;
 import gg.steve.elemental.pets.cmd.PetCmd;
-import gg.steve.elemental.pets.listener.AddPetListener;
+import gg.steve.elemental.pets.core.PlayerPetManager;
+import gg.steve.elemental.pets.listener.PetListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
@@ -40,6 +41,7 @@ public class SetupManager {
      */
     public static void registerEvents(Plugin instance) {
         PluginManager pm = instance.getServer().getPluginManager();
-        pm.registerEvents(new AddPetListener(), instance);
+        pm.registerEvents(new PetListener(), instance);
+        pm.registerEvents(new PlayerPetManager(), instance);
     }
 }

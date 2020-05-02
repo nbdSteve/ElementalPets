@@ -2,7 +2,6 @@ package gg.steve.elemental.pets.core;
 
 import gg.steve.elemental.pets.data.PetData;
 import gg.steve.elemental.pets.data.PetDataManager;
-import gg.steve.elemental.pets.data.PetDataType;
 import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.rarity.PetRarityManager;
 import gg.steve.elemental.pets.utils.ItemBuilderUtil;
@@ -15,19 +14,20 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public class Pet {
     private UUID petId;
     private YamlConfiguration config;
     private ItemBuilderUtil itemBuilder;
-    private Map<PetDataType, PetData> data;
+    private PetType type;
+    private PetData data;
     private Map<PetRarity, String> rarityPrefixes;
 
     public Pet(UUID petId, YamlFileUtil fileUtil) {
         this.petId = petId;
         this.config = fileUtil.get();
+        this.type = PetType.valueOf(this.config.getString("data.type").toUpperCase());
         this.rarityPrefixes = PetRarityManager.loadPetRarityPrefixes(this);
         this.data = PetDataManager.loadPetData(this);
         // load some of the item builder so that is doesn't constantly get created in givePet
@@ -47,16 +47,16 @@ public class Pet {
         ConfigurationSection item = this.config.getConfigurationSection("item");
         itemBuilder.addName(item.getString("name"), "{rarity}", this.rarityPrefixes.get(rarity));
         itemBuilder.addLore(item.getStringList("lore"), this.rarityPrefixes.get(rarity));
-        itemBuilder.addNBT(this);
+        itemBuilder.addNBT(this, rarity);
         player.getInventory().addItem(itemBuilder.getItem());
     }
 
     public void onSell() {
-        this.data.get(PetDataType.MONEY).onSell();
+        this.data.onSell();
     }
 
     public void onMine(BlockBreakEvent event) {
-        this.data.get(PetDataType.FORTUNE).onMine(event);
+        this.data.onMine(event);
     }
 
     public UUID getId() {
@@ -75,18 +75,19 @@ public class Pet {
         return itemBuilder;
     }
 
-    public Map<PetDataType, PetData> getData() {
-        return data;
-    }
-
     public Map<PetRarity, String> getRarityPrefixes() {
         return rarityPrefixes;
     }
 
-    public boolean isType(Set<PetDataType> types) {
-        for (PetDataType type : this.data.keySet()) {
-            if (types.contains(type)) return true;
-        }
-        return false;
+    public boolean isType(PetType type) {
+        return this.type.equals(type);
+    }
+
+    public PetType getType() {
+        return type;
+    }
+
+    public PetData getData() {
+        return data;
     }
 }

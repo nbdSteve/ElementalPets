@@ -2,13 +2,13 @@ package gg.steve.elemental.pets.core;
 
 import gg.steve.elemental.pets.Pets;
 import gg.steve.elemental.pets.config.Files;
-import gg.steve.elemental.pets.data.PetData;
-import gg.steve.elemental.pets.data.PetDataType;
 import gg.steve.elemental.pets.nbt.NBTItem;
+import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.utils.LogUtil;
 import gg.steve.elemental.pets.utils.YamlFileUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
@@ -44,20 +44,9 @@ public class PetManager {
         return activePets;
     }
 
-    public static boolean isPetActive(Player player, PetDataType type) {
-        for (ItemStack item : player.getInventory()) {
-            if (item == null || item.getType().equals(Material.AIR)) continue;
-            NBTItem nbtItem = new NBTItem(item);
-            if (nbtItem.getString("pets.id") == null) continue;
-            Pet pet = getPet(UUID.fromString(nbtItem.getString("pets.id")));
-            if (pet.getData().containsKey(type)) return true;
-        }
-        return false;
-    }
-
-    public static List<Pet> getActivePets(Player player) {
+    public static List<Pet> loadPetsFromInventory(Inventory inventory) {
         List<Pet> pets = new ArrayList<>();
-        for (ItemStack item : player.getInventory()) {
+        for (ItemStack item : inventory) {
             if (item == null || item.getType().equals(Material.AIR)) continue;
             NBTItem nbtItem = new NBTItem(item);
             if (nbtItem.getString("pets.id") == null) continue;
@@ -66,14 +55,9 @@ public class PetManager {
         return pets;
     }
 
-    public static Pet getActivePet(Player player, PetDataType type) {
-        for (ItemStack item : player.getInventory()) {
-            if (item == null || item.getType().equals(Material.AIR)) continue;
-            NBTItem nbtItem = new NBTItem(item);
-            if (nbtItem.getString("pets.id") == null) continue;
-            Pet pet = getPet(UUID.fromString(nbtItem.getString("pets.id")));
-            if (pet.getData().containsKey(type)) return pet;
-        }
-        return null;
+    public static PetRarity getPetRarity(ItemStack item) {
+        NBTItem nbtItem = new NBTItem(item);
+        if (nbtItem.getString("pets.rarity") == null) return null;
+        return PetRarity.valueOf(nbtItem.getString("pets.rarity").toUpperCase());
     }
 }
