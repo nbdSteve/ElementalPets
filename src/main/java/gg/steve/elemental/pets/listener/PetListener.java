@@ -35,7 +35,7 @@ public class PetListener implements Listener {
             return;
         }
         PlayerPetManager.addPetToPlayer(player.getUniqueId(), pet);
-        LogUtil.info(player.getName() + " picked up pet item, " + pet.getType() + " pet has been added to player. " + event.getEventName());
+        LogUtil.debug(player.getName() + " picked up pet item, " + pet.getType() + " pet has been added to player. " + event.getEventName());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -54,14 +54,14 @@ public class PetListener implements Listener {
                 PlayerPetManager.addPetToPlayer(player.getUniqueId(), invPet);
             }
         }
-        LogUtil.info(player.getName() + " dropped pet item, " + pet.getType() + " pet has been removed from player. " + event.getEventName());
+        LogUtil.debug(player.getName() + " dropped pet item, " + pet.getType() + " pet has been removed from player. " + event.getEventName());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void playerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         PlayerPetManager.removePlayer(player.getUniqueId());
-        LogUtil.info(player.getName() + " died, all pets have been removed. " + event.getEventName());
+        LogUtil.debug(player.getName() + " died, all pets have been removed. " + event.getEventName());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -103,56 +103,56 @@ public class PetListener implements Listener {
         }
         if (cursor != null && PlayerPetManager.isPetActive(player.getUniqueId(), cursor.getType()) && playerInv) {
             event.setCancelled(true);
-            LogUtil.info(player.getName() + " tried to add another " + cursor.getType() + " pet to the inventory, but was blocked ((line ~94))");
+            LogUtil.debug(player.getName() + " tried to add another " + cursor.getType() + " pet to the inventory, but was blocked ((line ~94))");
             return;
         }
         if (petActive && cursor != null && cursor.isType(current.getType()) && !playerInv) {
             event.setCancelled(true);
-            LogUtil.info(player.getName() + " tried to add another " + current.getType() + " pet to the inventory, but was blocked ((line ~99))");
+            LogUtil.debug(player.getName() + " tried to add another " + current.getType() + " pet to the inventory, but was blocked ((line ~99))");
             return;
         }
         if (normal && playerInv) {
             if (petActive) {
                 PlayerPetManager.removePetFromPlayer(player.getUniqueId(), current.getType());
-                LogUtil.info(player.getName() + " removed " + current.getType() + " pet from their inventory using a normal click ((line ~105))");
+                LogUtil.debug(player.getName() + " removed " + current.getType() + " pet from their inventory using a normal click ((line ~105))");
             }
             if (cursor != null) {
                 PlayerPetManager.addPetToPlayer(player.getUniqueId(), cursor);
-                LogUtil.info(player.getName() + " added " + cursor.getType() + " pet to their inventory using a normal click ((line ~109))");
+                LogUtil.debug(player.getName() + " added " + cursor.getType() + " pet to their inventory using a normal click ((line ~109))");
             }
             return;
         }
         if (numberkey && !playerInv) {
             if (petActive) {
                 event.setCancelled(true);
-                LogUtil.info(player.getName() + " tried to add another " + current.getType() + " pet to the inventory, but was blocked ((line ~116))");
+                LogUtil.debug(player.getName() + " tried to add another " + current.getType() + " pet to the inventory, but was blocked ((line ~116))");
                 return;
             } else if (current != null) {
                 PlayerPetManager.addPetToPlayer(player.getUniqueId(), current);
-                LogUtil.info(player.getName() + " added a " + current.getType() + " pet to their inventory ((line ~120))");
+                LogUtil.debug(player.getName() + " added a " + current.getType() + " pet to their inventory ((line ~120))");
             } else if (player.getInventory().getItem(event.getHotbarButton()) != null
                     && !player.getInventory().getItem(event.getHotbarButton()).getType().equals(Material.AIR)) {
                 NBTItem nbtItem = new NBTItem(player.getInventory().getItem(event.getHotbarButton()));
                 if (nbtItem.getString("pets.id").equalsIgnoreCase("")) return;
                 Pet hotbar = PetManager.getPet(UUID.fromString(nbtItem.getString("pets.id")));
                 PlayerPetManager.removePetFromPlayer(player.getUniqueId(), hotbar.getType());
-                LogUtil.info(player.getName() + " removed " + hotbar.getType() + " pet from their inventory using hotbar swap, pet removed from player ((line ~127))");
+                LogUtil.debug(player.getName() + " removed " + hotbar.getType() + " pet from their inventory using hotbar swap, pet removed from player ((line ~127))");
             }
             return;
         }
         if (shift) {
             if (!playerInv) {
                 if (petActive) {
-                    LogUtil.info(player.getName() + " tried to add another " + current.getType() + " pet to their inventory using shift click, but was blocked ((line ~133))");
+                    LogUtil.debug(player.getName() + " tried to add another " + current.getType() + " pet to their inventory using shift click, but was blocked ((line ~133))");
                     event.setCancelled(true);
                     return;
                 } else if (current != null) {
                     PlayerPetManager.addPetToPlayer(player.getUniqueId(), current);
-                    LogUtil.info(player.getName() + " added a " + current.getType() + " pet to their inventory using shift click, pet added to player ((line ~138))");
+                    LogUtil.debug(player.getName() + " added a " + current.getType() + " pet to their inventory using shift click, pet added to player ((line ~138))");
                 }
             } else if (playerInv && event.getRawSlot() > 44) {
                 PlayerPetManager.removePetFromPlayer(player.getUniqueId(), current.getType());
-                LogUtil.info(player.getName() + " removed " + current.getType() + " pet from their inventory using shift click, pet removed from player ((line ~142))");
+                LogUtil.debug(player.getName() + " removed " + current.getType() + " pet from their inventory using shift click, pet removed from player ((line ~142))");
             }
         }
     }

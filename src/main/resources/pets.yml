@@ -1,3 +1,7 @@
 loaded-pets:
   - money
   - fortune
+
+money-boost: 1.25 # If proced by pet then this is the amount the sale will be multiplied by
+
+fortune-boost: 1.0 # If proced by pet then this will be the amount of extra drops they receive

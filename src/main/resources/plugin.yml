@@ -8,3 +8,5 @@ commands:
   pet:
     usage: /<command>
     description: Base commands for elemental pets.
+    aliases:
+      - pets

@@ -20,8 +20,8 @@ rarity:
 
 data:
   type: fortune
-  common: 1.05
-  uncommon: 1.10
-  rare: 1.15
-  epic: 1.20
-  legendary: 1.25
+  common: 0.10
+  uncommon: 0.15
+  rare: 0.20
+  epic: 0.25
+  legendary: 0.30

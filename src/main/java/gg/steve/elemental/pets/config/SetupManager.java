@@ -3,6 +3,7 @@ package gg.steve.elemental.pets.config;
 import gg.steve.elemental.pets.Pets;
 import gg.steve.elemental.pets.cmd.PetCmd;
 import gg.steve.elemental.pets.core.PlayerPetManager;
+import gg.steve.elemental.pets.listener.BlockPlaceListener;
 import gg.steve.elemental.pets.listener.PetListener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -43,5 +44,6 @@ public class SetupManager {
         PluginManager pm = instance.getServer().getPluginManager();
         pm.registerEvents(new PetListener(), instance);
         pm.registerEvents(new PlayerPetManager(), instance);
+        pm.registerEvents(new BlockPlaceListener(), instance);
     }
 }

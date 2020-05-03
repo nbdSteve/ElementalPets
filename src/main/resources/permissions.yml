@@ -1,0 +1,4 @@
+command:
+  give: pets.give
+  reload: pets.reload
+  help: pets.help

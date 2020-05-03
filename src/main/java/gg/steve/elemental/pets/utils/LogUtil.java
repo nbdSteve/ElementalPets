@@ -4,6 +4,7 @@ import org.bukkit.plugin.Plugin;
 
 public class LogUtil {
     private static Plugin instance;
+    private static boolean debug = false;
 
     public static void setInstance(Plugin plugin) {
         instance = plugin;
@@ -15,5 +16,9 @@ public class LogUtil {
 
     public static void warning(String message) {
         instance.getLogger().warning(message);
+    }
+
+    public static void debug(String message) {
+        if (debug) info(message);
     }
 }

@@ -20,8 +20,8 @@ rarity:
 
 data:
   type: money
-  common: 1.05
-  uncommon: 1.10
-  rare: 1.15
-  epic: 1.20
-  legendary: 1.25
+  common: 0.05
+  uncommon: 0.075
+  rare: 0.10
+  epic: 0.125
+  legendary: 0.15

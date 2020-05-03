@@ -1,6 +1,7 @@
 package gg.steve.elemental.pets.core;
 
 import gg.steve.elemental.pets.utils.LogUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,15 @@ public class PlayerPetManager implements Listener {
 
     public static void initialise() {
         petPlayers = new HashMap<>();
+        if (Bukkit.getOnlinePlayers().isEmpty()) return;
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            List<Pet> pets = PetManager.loadPetsFromInventory(player.getInventory());
+            if (pets.isEmpty()) return;
+            LogUtil.info("Loading pets in " + player.getName() + "'s inventory since the server has been reloaded to the server.");
+            for (Pet pet : pets) {
+                addPetToPlayer(player.getUniqueId(), pet);
+            }
+        }
     }
 
     public static boolean isPetActive(UUID playerId, PetType type) {

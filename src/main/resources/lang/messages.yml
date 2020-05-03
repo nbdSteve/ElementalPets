@@ -1,0 +1,14 @@
+reload:
+  - '&5&lPets &f>> &7You have successfully reloaded the plugin.'
+
+help:
+  - '&5&lPets &f>> &7Please dm nbdSteve#0583 on discord for command, permission and configuration help.'
+
+give-pet-giver:
+  - '&5&lPets &f>> &7You have given &6{player} &7a {rarity} &6{pet-type} &7pet.'
+
+give-pet-receiver:
+  - '&5&lPets &f>> &7You have received a {rarity} &6{pet-type} &7pet.'
+
+give-pet-receiver-inv-full-or-pet-active:
+  - '&5&lPets &f>> &7You have received a {rarity} &6{pet-type} &7pet, however, because your inventory was full or you already have a &6{pet-type} &7in your inventory it has been dropped on the ground.'

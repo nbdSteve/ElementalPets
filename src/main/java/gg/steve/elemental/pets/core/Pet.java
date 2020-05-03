@@ -1,7 +1,6 @@
 package gg.steve.elemental.pets.core;
 
 import gg.steve.elemental.pets.data.PetData;
-import gg.steve.elemental.pets.data.PetDataManager;
 import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.rarity.PetRarityManager;
 import gg.steve.elemental.pets.utils.ItemBuilderUtil;
@@ -10,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Map;
@@ -29,7 +28,7 @@ public class Pet {
         this.config = fileUtil.get();
         this.type = PetType.valueOf(this.config.getString("data.type").toUpperCase());
         this.rarityPrefixes = PetRarityManager.loadPetRarityPrefixes(this);
-        this.data = PetDataManager.loadPetData(this);
+        this.data = new PetData(this.config.getConfigurationSection("data"));
         // load some of the item builder so that is doesn't constantly get created in givePet
         ConfigurationSection item = this.config.getConfigurationSection("item");
         itemBuilder = new ItemBuilderUtil(item.getString("material"), item.getString("data"));
@@ -51,12 +50,16 @@ public class Pet {
         player.getInventory().addItem(itemBuilder.getItem());
     }
 
-    public void onSell() {
-        this.data.onSell();
+    public ItemStack getItem(PetRarity rarity) {
+        ConfigurationSection item = this.config.getConfigurationSection("item");
+        itemBuilder.addName(item.getString("name"), "{rarity}", this.rarityPrefixes.get(rarity));
+        itemBuilder.addLore(item.getStringList("lore"), this.rarityPrefixes.get(rarity));
+        itemBuilder.addNBT(this, rarity);
+        return itemBuilder.getItem();
     }
 
-    public void onMine(BlockBreakEvent event) {
-        this.data.onMine(event);
+    public boolean isProcing(PetRarity rarity) {
+        return this.data.isProcing(rarity);
     }
 
     public UUID getId() {

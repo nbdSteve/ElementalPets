@@ -2,8 +2,13 @@ package gg.steve.elemental.pets.config;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.io.File;
+
 public enum Files {
-    CONFIG("pets.yml");
+    CONFIG("pets.yml"),
+    MESSAGES("lang" + File.separator + "messages.yml"),
+    DEBUG("lang" + File.separator + "debug.yml"),
+    PERMISSIONS("permissions.yml");
 
     private final String file;
 
