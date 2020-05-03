@@ -49,7 +49,7 @@ public class PetManager {
         for (ItemStack item : inventory) {
             if (item == null || item.getType().equals(Material.AIR)) continue;
             NBTItem nbtItem = new NBTItem(item);
-            if (nbtItem.getString("pets.id") == null) continue;
+            if (nbtItem.getString("pets.id").equalsIgnoreCase("")) continue;
             pets.add(getPet(UUID.fromString(nbtItem.getString("pets.id"))));
         }
         return pets;

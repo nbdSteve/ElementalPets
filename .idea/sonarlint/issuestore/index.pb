@@ -43,8 +43,6 @@ k
 ;src/main/java/gg/steve/elemental/pets/rarity/PetRarity.java,e\4\e47b33771aeb831fd544e1452c663d3d9eb63c49
 r
 Bsrc/main/java/gg/steve/elemental/pets/rarity/RarityAttributes.java,8\b\8b8b866812efd9bc7b7d26906b3621d3df9b4496
-k
-;src/main/java/gg/steve/elemental/pets/data/PetDataType.java,2\f\2f1d9af571eade641ba61eea4160f1a0f322cd24
 r
 Bsrc/main/java/gg/steve/elemental/pets/rarity/PetRarityManager.java,2\e\2e6cfc3ddeda451277302a94a0e51925e3942b17
 n
@@ -61,5 +59,9 @@ r
 Bsrc/main/java/gg/steve/elemental/pets/data/types/MoneyPetData.java,1\3\133d68340be3f42ed928d33227a2bc2ab69c25ba
 e
 5src/main/java/gg/steve/elemental/pets/cmd/PetCmd.java,3\9\39f87be428ca48261d4ba6d17556e78a4934b48e
-r
-Bsrc/main/java/gg/steve/elemental/pets/listener/AddPetListener.java,2\a\2aad475d358f8f5a1f76f471f9d009f55fa4b25b
+g
+7src/main/java/gg/steve/elemental/pets/core/PetType.java,8\c\8c1b0b8ecba2ed9a65712f3404742b6a2d1f22b5
+p
+@src/main/java/gg/steve/elemental/pets/core/PlayerPetManager.java,0\3\0389625af2a6b13915175f88c17c0be9e60cc2a2
+o
+?src/main/java/gg/steve/elemental/pets/listener/PetListener.java,b\a\bac5c3d05b20fc3ada4a1773e9711a07a0ecfc6d
