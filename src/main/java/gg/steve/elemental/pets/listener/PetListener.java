@@ -4,6 +4,7 @@ import gg.steve.elemental.pets.core.Pet;
 import gg.steve.elemental.pets.core.PetManager;
 import gg.steve.elemental.pets.core.PlayerPetManager;
 import gg.steve.elemental.pets.nbt.NBTItem;
+import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.utils.LogUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,6 +18,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -34,7 +36,7 @@ public class PetListener implements Listener {
             event.setCancelled(true);
             return;
         }
-        PlayerPetManager.addPetToPlayer(player.getUniqueId(), pet);
+        PlayerPetManager.addPetToPlayer(player.getUniqueId(), pet, PetRarity.valueOf(nbtItem.getString("pets.rarity")));
         LogUtil.debug(player.getName() + " picked up pet item, " + pet.getType() + " pet has been added to player. " + event.getEventName());
     }
 
@@ -48,10 +50,10 @@ public class PetListener implements Listener {
         PlayerPetManager.removePetFromPlayer(player.getUniqueId(), pet.getType());
         // when the player removes a pet from their inventory using drop we want to reset the players active
         // pets to ensure that they cant pick up another pet of the same type
-        List<Pet> pets = PetManager.loadPetsFromInventory(player.getInventory());
+        Map<Pet, PetRarity> pets = PetManager.loadPetsFromInventory(player.getInventory());
         if (!pets.isEmpty()) {
-            for (Pet invPet : pets) {
-                PlayerPetManager.addPetToPlayer(player.getUniqueId(), invPet);
+            for (Pet invPet : pets.keySet()) {
+                PlayerPetManager.addPetToPlayer(player.getUniqueId(), invPet, pets.get(invPet));
             }
         }
         LogUtil.debug(player.getName() + " dropped pet item, " + pet.getType() + " pet has been removed from player. " + event.getEventName());
@@ -85,15 +87,19 @@ public class PetListener implements Listener {
         }
         Pet current = null;
         Pet cursor = null;
+        PetRarity currentRarity = null;
+        PetRarity cursorRarity = null;
         if (event.getCurrentItem() != null && !event.getCurrentItem().getType().equals(Material.AIR)) {
             NBTItem nbtItem = new NBTItem(event.getCurrentItem());
             if (nbtItem.getString("pets.id").equalsIgnoreCase("")) return;
             current = PetManager.getPet(UUID.fromString(nbtItem.getString("pets.id")));
+            currentRarity = PetRarity.valueOf(nbtItem.getString("pets.rarity"));
         }
         if (event.getCursor() != null && !event.getCursor().getType().equals(Material.AIR)) {
             NBTItem nbtItem = new NBTItem(event.getCursor());
             if (nbtItem.getString("pets.id").equalsIgnoreCase("")) return;
             cursor = PetManager.getPet(UUID.fromString(nbtItem.getString("pets.id")));
+            cursorRarity = PetRarity.valueOf(nbtItem.getString("pets.rarity"));
         }
         Player player = (Player) event.getWhoClicked();
         boolean petActive = false;
@@ -117,7 +123,7 @@ public class PetListener implements Listener {
                 LogUtil.debug(player.getName() + " removed " + current.getType() + " pet from their inventory using a normal click ((line ~105))");
             }
             if (cursor != null) {
-                PlayerPetManager.addPetToPlayer(player.getUniqueId(), cursor);
+                PlayerPetManager.addPetToPlayer(player.getUniqueId(), cursor, cursorRarity);
                 LogUtil.debug(player.getName() + " added " + cursor.getType() + " pet to their inventory using a normal click ((line ~109))");
             }
             return;
@@ -128,7 +134,7 @@ public class PetListener implements Listener {
                 LogUtil.debug(player.getName() + " tried to add another " + current.getType() + " pet to the inventory, but was blocked ((line ~116))");
                 return;
             } else if (current != null) {
-                PlayerPetManager.addPetToPlayer(player.getUniqueId(), current);
+                PlayerPetManager.addPetToPlayer(player.getUniqueId(), current, currentRarity);
                 LogUtil.debug(player.getName() + " added a " + current.getType() + " pet to their inventory ((line ~120))");
             } else if (player.getInventory().getItem(event.getHotbarButton()) != null
                     && !player.getInventory().getItem(event.getHotbarButton()).getType().equals(Material.AIR)) {
@@ -147,7 +153,7 @@ public class PetListener implements Listener {
                     event.setCancelled(true);
                     return;
                 } else if (current != null) {
-                    PlayerPetManager.addPetToPlayer(player.getUniqueId(), current);
+                    PlayerPetManager.addPetToPlayer(player.getUniqueId(), current, currentRarity);
                     LogUtil.debug(player.getName() + " added a " + current.getType() + " pet to their inventory using shift click, pet added to player ((line ~138))");
                 }
             } else if (playerInv && event.getRawSlot() > 44) {

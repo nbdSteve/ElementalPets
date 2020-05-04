@@ -1,5 +1,6 @@
 package gg.steve.elemental.pets.core;
 
+import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.utils.LogUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,16 +16,18 @@ import java.util.UUID;
 
 public class PlayerPetManager implements Listener {
     private static Map<UUID, Map<PetType, Pet>> petPlayers;
+    private static Map<UUID, Map<PetType, PetRarity>> petPlayerRarities;
 
     public static void initialise() {
         petPlayers = new HashMap<>();
+        petPlayerRarities = new HashMap<>();
         if (Bukkit.getOnlinePlayers().isEmpty()) return;
         for (Player player : Bukkit.getOnlinePlayers()) {
-            List<Pet> pets = PetManager.loadPetsFromInventory(player.getInventory());
+            Map<Pet, PetRarity> pets = PetManager.loadPetsFromInventory(player.getInventory());
             if (pets.isEmpty()) return;
             LogUtil.info("Loading pets in " + player.getName() + "'s inventory since the server has been reloaded to the server.");
-            for (Pet pet : pets) {
-                addPetToPlayer(player.getUniqueId(), pet);
+            for (Pet pet : pets.keySet()) {
+                addPetToPlayer(player.getUniqueId(), pet, pets.get(pet));
             }
         }
     }
@@ -42,36 +45,45 @@ public class PlayerPetManager implements Listener {
         return petPlayers.get(playerId);
     }
 
-    public static void addPetToPlayer(UUID playerId, Pet pet) {
+    public static PetRarity getPetRarity(UUID playerId, PetType type) {
+        return petPlayerRarities.get(playerId).get(type);
+    }
+
+    public static void addPetToPlayer(UUID playerId, Pet pet, PetRarity rarity) {
         if (petPlayers == null) return;
         if (petPlayers.containsKey(playerId)) {
             petPlayers.get(playerId).put(pet.getType(), pet);
+            petPlayerRarities.get(playerId).put(pet.getType(), rarity);
             return;
         }
         petPlayers.put(playerId, new HashMap<>());
+        petPlayerRarities.put(playerId, new HashMap<>());
         petPlayers.get(playerId).put(pet.getType(), pet);
+        petPlayerRarities.get(playerId).put(pet.getType(), rarity);
     }
 
     public static void removePetFromPlayer(UUID playerId, PetType type) {
         if (petPlayers == null || petPlayers.isEmpty()) return;
         if (!petPlayers.containsKey(playerId)) return;
         petPlayers.get(playerId).remove(type);
+        petPlayerRarities.get(playerId).remove(type);
     }
 
     public static void removePlayer(UUID playerId) {
         if (petPlayers == null || petPlayers.isEmpty()) return;
         if (!petPlayers.containsKey(playerId)) return;
         petPlayers.remove(playerId);
+        petPlayerRarities.remove(playerId);
     }
 
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        List<Pet> pets = PetManager.loadPetsFromInventory(player.getInventory());
+        Map<Pet, PetRarity> pets = PetManager.loadPetsFromInventory(player.getInventory());
         if (pets.isEmpty()) return;
         LogUtil.info("Loading pets in " + player.getName() + "'s inventory since they are connecting to the server.");
-        for (Pet pet : pets) {
-            addPetToPlayer(player.getUniqueId(), pet);
+        for (Pet pet : pets.keySet()) {
+            addPetToPlayer(player.getUniqueId(), pet, pets.get(pet));
         }
     }
 

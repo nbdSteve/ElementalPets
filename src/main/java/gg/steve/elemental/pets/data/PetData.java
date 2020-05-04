@@ -18,6 +18,6 @@ public class PetData {
     }
 
     public boolean isProcing(PetRarity rarity) {
-        return Math.random() * 1 > procChances.get(rarity);
+        return Math.random() * 1 < procChances.get(rarity);
     }
 }

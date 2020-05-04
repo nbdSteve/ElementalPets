@@ -28,9 +28,8 @@ public class PetApi {
         return PlayerPetManager.getActivePets(player.getUniqueId());
     }
 
-    public static PetRarity getPetRarity(NBTItem nbtItem) {
-        if (nbtItem.getString("pets.id").equalsIgnoreCase("")) return null;
-        return PetRarity.valueOf("pets.rarity".toUpperCase());
+    public static PetRarity getPetRarity(Player player, PetType type) {
+        return PlayerPetManager.getPetRarity(player.getUniqueId(), type);
     }
 
     public static boolean isProcing(Pet pet, PetRarity rarity) {

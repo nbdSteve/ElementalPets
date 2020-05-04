@@ -51,7 +51,7 @@ public class GiveCmd {
             MessageType.GIVE_RECEIVER_ERROR.message(target, pet.getRarityPrefixes().get(rarity), args[2]);
         } else {
             pet.givePet(target, rarity);
-            PlayerPetManager.addPetToPlayer(target.getUniqueId(), pet);
+            PlayerPetManager.addPetToPlayer(target.getUniqueId(), pet, rarity);
             MessageType.GIVE_RECEIVER.message(target, pet.getRarityPrefixes().get(rarity), args[2]);
         }
         if (!(sender instanceof Player) || player != null) {

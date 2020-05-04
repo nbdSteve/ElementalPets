@@ -1,7 +1,9 @@
 
-u	java:S1351"YReduce the total number of break and continue statements in this loop to use at most one.(•ûåø8ªºè¬.
-\
-java:S1118":Add a private constructor to hide the implicit public one.(Ÿê¢™ùÿÿÿÿ8½·œ§.
 W
 java:S1128
 "5Remove this unused import 'org.bukkit.entity.Player'.(Î©Øüúÿÿÿÿ8İÛ÷².
+n
+java:S11925"LDefine a constant instead of duplicating this literal "pets.rarity" 3 times.(™í½ÿùÿÿÿÿ8 ÊÏó.
+\
+java:S1118":Add a private constructor to hide the implicit public one.(Ÿê¢™ùÿÿÿÿ8½·œ§.
+u	java:S1351"YReduce the total number of break and continue statements in this loop to use at most one.(•ûåø8ªºè¬.

@@ -1,5 +1,7 @@
 
 w
-java:S4144F"UUpdate this method so that its implementation is not identical to "getId" on line 62.(µ¾äüşÿÿÿÿ8Æ—š¬.
+java:S4144I"UUpdate this method so that its implementation is not identical to "getId" on line 65.(µ¾äüşÿÿÿÿ8Æ—š¬.
 M
-java:S1874&"0Remove this use of "setOwner"; it is deprecated.(–ëéÛ8úêñ§.
+java:S1874%"0Remove this use of "setOwner"; it is deprecated.(–ëéÛ8úêñ§.
+f
+java:S1192("IDefine a constant instead of duplicating this literal "{rarity}" 3 times.(ÁªÛ8ó¬óÑ.

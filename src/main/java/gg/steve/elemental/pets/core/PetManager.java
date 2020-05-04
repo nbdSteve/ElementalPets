@@ -44,13 +44,13 @@ public class PetManager {
         return activePets;
     }
 
-    public static List<Pet> loadPetsFromInventory(Inventory inventory) {
-        List<Pet> pets = new ArrayList<>();
+    public static Map<Pet, PetRarity> loadPetsFromInventory(Inventory inventory) {
+        Map<Pet, PetRarity> pets = new HashMap<>();
         for (ItemStack item : inventory) {
             if (item == null || item.getType().equals(Material.AIR)) continue;
             NBTItem nbtItem = new NBTItem(item);
             if (nbtItem.getString("pets.id").equalsIgnoreCase("")) continue;
-            pets.add(getPet(UUID.fromString(nbtItem.getString("pets.id"))));
+            pets.put(getPet(UUID.fromString(nbtItem.getString("pets.id"))), PetRarity.valueOf(nbtItem.getString("pets.rarity")));
         }
         return pets;
     }

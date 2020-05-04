@@ -3,8 +3,8 @@ package gg.steve.elemental.pets.core;
 import gg.steve.elemental.pets.config.Files;
 
 public enum PetType {
-    MONEY(Files.CONFIG.get().getDouble("money-booster")),
-    FORTUNE(Files.CONFIG.get().getDouble("fortune-booster"));
+    MONEY(Files.CONFIG.get().getDouble("money-boost")),
+    FORTUNE(Files.CONFIG.get().getDouble("fortune-boost"));
 
     private final double booster;
 
@@ -13,6 +13,6 @@ public enum PetType {
     }
 
     public double getBoostAmount() {
-        return booster;
+        return this.booster;
     }
 }
