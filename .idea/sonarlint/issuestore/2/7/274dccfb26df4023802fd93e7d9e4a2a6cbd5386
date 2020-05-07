@@ -1,7 +1,13 @@
 
+U
+java:S1128"3Remove this unused import 'org.bukkit.entity.Item'.(ıõç½øÿÿÿÿ8ÍÁ¬û.
 w
-java:S4144I"UUpdate this method so that its implementation is not identical to "getId" on line 65.(µ¾äüşÿÿÿÿ8Æ—š¬.
-M
-java:S1874%"0Remove this use of "setOwner"; it is deprecated.(–ëéÛ8úêñ§.
+java:S4144O"UUpdate this method so that its implementation is not identical to "getId" on line 71.(µ¾äüşÿÿÿÿ8Æ—š¬.
+]
+java:S1128"@Remove this unused import 'org.bukkit.inventory.meta.SkullMeta'.(ºÒ¨–8Û¬û.
+K
+java:S1128	".Remove this unused import 'org.bukkit.Bukkit'.(Ø­æ8Û¬û.
 f
-java:S1192("IDefine a constant instead of duplicating this literal "{rarity}" 3 times.(ÁªÛ8ó¬óÑ.
+java:S1192-"IDefine a constant instead of duplicating this literal "{rarity}" 3 times.(ÁªÛ8È¯·û.
+k
+java:S1192'"IDefine a constant instead of duplicating this literal "material" 3 times.(ø¹“òúÿÿÿÿ8È¯·û.

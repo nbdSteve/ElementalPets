@@ -2,9 +2,8 @@ pet-id: 4aabe91b-261b-491c-8d01-5551561ce201
 
 item:
   name: '{rarity} &f&lFORTUNE PET'
-  material: skull_item
-  data: 3
-  owner: a91b96a0-dc18-427f-b76d-f7848bec6bd2
+  material: hdb-25083
+  data: 0
   lore:
     - ''
     - '&7Fortune Pet will increase drops from blocks.'

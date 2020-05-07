@@ -5,9 +5,11 @@ import gg.steve.elemental.pets.rarity.PetRarity;
 import gg.steve.elemental.pets.rarity.PetRarityManager;
 import gg.steve.elemental.pets.utils.ItemBuilderUtil;
 import gg.steve.elemental.pets.utils.YamlFileUtil;
+import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -30,12 +32,15 @@ public class Pet {
         this.rarityPrefixes = PetRarityManager.loadPetRarityPrefixes(this);
         this.data = new PetData(this.config.getConfigurationSection("data"));
         // load some of the item builder so that is doesn't constantly get created in givePet
+    }
+
+    public void loadItem() {
         ConfigurationSection item = this.config.getConfigurationSection("item");
-        itemBuilder = new ItemBuilderUtil(item.getString("material"), item.getString("data"));
-        if (item.getString("owner") != null) {
-            SkullMeta meta = (SkullMeta) itemBuilder.getItemMeta();
-            meta.setOwner(Bukkit.getOfflinePlayer(UUID.fromString(item.getString("owner"))).getName());
-            itemBuilder.setItemMeta(meta);
+        if (item.getString("material").startsWith("hdb")) {
+            String[] parts = item.getString("material").split("-");
+            itemBuilder = new ItemBuilderUtil(new HeadDatabaseAPI().getItemHead(parts[1]));
+        } else {
+            itemBuilder = new ItemBuilderUtil(item.getString("material"), item.getString("data"));
         }
         itemBuilder.setLorePlaceholders("{rarity}");
         itemBuilder.addEnchantments(item.getStringList("enchantments"));
@@ -43,6 +48,7 @@ public class Pet {
     }
 
     public void givePet(Player player, PetRarity rarity) {
+        if (itemBuilder == null) loadItem();
         ConfigurationSection item = this.config.getConfigurationSection("item");
         itemBuilder.addName(item.getString("name"), "{rarity}", this.rarityPrefixes.get(rarity));
         itemBuilder.addLore(item.getStringList("lore"), this.rarityPrefixes.get(rarity));

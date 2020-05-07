@@ -1,0 +1,28 @@
+
+y
+java:S1192p"WDefine a constant instead of duplicating this literal " tried to add another " 4 times.(”Ô‹´ûÿÿÿÿ8ÇİıÇ.
+k
+java:S1192!"IDefine a constant instead of duplicating this literal "pets.id" 10 times.(ê’¯šüÿÿÿÿ8âÈâ².
+C
+java:S1659H"'Declare "numberkey" on a separate line.(¢¨„o8¾¾ìÅ.
+9
+java:S3626‡"Remove this redundant jump.(ûÁİ…8ÇİıÇ.
+Q
+java:S28647"4Iterate over the "entrySet" instead of the "keySet".(‹—äŞ8ÊËëó.
+g
+java:S1192{"JDefine a constant instead of duplicating this literal " removed " 3 times.(ö¬˜8ÇİıÇ.
+z	java:S131J"YComplete cases by adding the missing enum constants or add a default case to this switch.(¢éµ±ıÿÿÿÿ8ş¢õÅ.
+Z
+java:S2589Ÿ"7Remove this expression which always evaluates to "true"(šÚ÷Œûÿÿÿÿ8ÇİıÇ.
+@
+java:S1659H"$Declare "normal" on a separate line.(¢¨„o8º’¨Ç.
+i
+java:S1192'"LDefine a constant instead of duplicating this literal "pets.rarity" 3 times.(½Ø“ë8€Ğğó.
+9
+java:S3626š"Remove this redundant jump.(ûÁİ…8ÇİıÇ.
+Y
+java:S1874"=Remove this use of "PlayerPickupItemEvent"; it is deprecated.(×ñº{8Õâ›­.
+c
+java:S2259 "EA "NullPointerException" could be thrown; "current" is nullable here.(›ï¬›8ÇİıÇ.
+t
+java:S3776F"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(¤ÛŒ‚ÿÿÿÿÿ8ôÖ¶Æ.

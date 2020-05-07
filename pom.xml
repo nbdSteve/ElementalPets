@@ -6,7 +6,7 @@
 
     <groupId>gg.steve.elemental</groupId>
     <artifactId>Pets</artifactId>
-    <version>0.4.6</version>
+    <version>0.4.8</version>
     <packaging>jar</packaging>
 
     <name>Pets</name>
@@ -63,6 +63,10 @@
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -71,6 +75,11 @@
             <artifactId>spigot-api</artifactId>
             <version>1.15.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.shynixn.headdatabase</groupId>
+            <artifactId>hdb-api</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

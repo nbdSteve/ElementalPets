@@ -4,6 +4,8 @@ main: gg.steve.elemental.pets.Pets
 api-version: 1.13
 authors: [stevegoodhill]
 description: Pets plugin developed for ElementalMC.
+softdepend:
+  - HeadDatabase
 commands:
   pet:
     usage: /<command>
