@@ -38,6 +38,7 @@ public class PlayerPetManager implements Listener {
     }
 
     public static Pet getActivePet(UUID playerId, PetType type) {
+        if (!petPlayers.containsKey(playerId)) return null;
         return petPlayers.get(playerId).get(type);
     }
 
