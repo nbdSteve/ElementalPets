@@ -1,20 +1,20 @@
 only-players-accessible:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7Only players can use that command, please go in-game and try again.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7Only players can use that command, please go in-game and try again.'
 
 insufficient-permission:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7You do not have permission (&6{node}&7) to use that.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7You do not have permission (&a{node}&7) to use that.'
 
 target-not-online:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7The target player must be online in order to complete that action.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7The target player must be online in order to complete that action.'
 
 invalid-rarity:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7Please enter a valid pet rarity, &7&o((&6&ocommon&7&o, &6&ouncommon&7&o, &6&orare&7&o, &6&oepic&7&o, &6&olegendary&7&o)).'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7Please enter a valid pet rarity, &7&o((&a&ocommon&7&o, &a&ouncommon&7&o, &a&orare&7&o, &a&oepic&7&o, &a&olegendary&7&o)).'
 
 invalid-number-of-arguments:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7The number of arguments you entered is incorrect.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7The number of arguments you entered is incorrect.'
 
 invalid-command:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7The command you entered does not exist.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7The command you entered does not exist.'
 
 invalid-pet:
-  - '&5&lPets &4(&c&lERROR&4) &f>> &7The pet you entered does not exist, please review your pets folder for active pets.'
+  - '&b&lPets &4(&c&lERROR&4) &f» &7The pet you entered does not exist, please review your pets folder for active pets.'
